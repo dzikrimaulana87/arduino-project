@@ -1,0 +1,32 @@
+const int pirPin = 2;
+const int buzzerPin = 8;
+const int lampPin = 10;
+
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(pirPin, INPUT);
+
+  pinMode(buzzerPin, OUTPUT);
+
+  pinMode(lampPin, OUTPUT);
+}
+
+void loop() {
+  
+  int pirValue = digitalRead(pirPin);
+  
+  if (pirValue == HIGH) {
+    Serial.println("Gerakan terdeteksi, berhati-hati");
+    tone(buzzerPin, 1000);
+    digitalWrite(lampPin, HIGH);
+    
+
+    delay(1000);
+    
+    noTone(buzzerPin);
+    digitalWrite(lampPin, LOW);
+  } else {
+    noTone(buzzerPin);
+  }
+}
